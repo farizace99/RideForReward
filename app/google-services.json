@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "657941967315",
+    "firebase_url": "https://rideforreward.firebaseio.com",
+    "project_id": "rideforreward",
+    "storage_bucket": "rideforreward.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657941967315:android:4c14f2c59352e6c431bf26",
+        "android_client_info": {
+          "package_name": "com.myapplicationdev.android.rideforreward"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657941967315-mde379phtjeh8bda3euv4ns72ec59c3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myapplicationdev.android.rideforreward",
+            "certificate_hash": "04c29d09619c7ad119d044bdb61d60035336c7b4"
+          }
+        },
+        {
+          "client_id": "657941967315-25ttugio2tm5gqhdmcgvjrpr0f3d3hn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDwasYgz30C13sIrwu1ySVtIyPKThyCPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657941967315-25ttugio2tm5gqhdmcgvjrpr0f3d3hn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

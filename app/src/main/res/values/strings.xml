@@ -1,0 +1,13 @@
+<resources>
+    <array name="Transport">
+        <item>Bus</item>
+        <item>Train</item>
+        <item>Taxi</item>
+    </array>
+    <string name="app_instructions"><u>See instructions for using the features</u></string>
+    <string name="productDetails">
+<a href="https://blendjet.com/products/blendjet-one">See more about the product details</a>
+</string>
+
+    <string name="app_name">RideForReward</string>
+</resources>
