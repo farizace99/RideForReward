@@ -27,6 +27,8 @@ public class ProductPurchaseActivity extends AppCompatActivity {
     TextView tvPoints, tvProductLink;
     Button btnTrade, btnCancel;
     DatabaseReference DBR;
+    DatabaseReference DBRS;
+    ArrayList<Integer> points = new ArrayList<>();
     Member Member;
     int z = 1;
 
@@ -42,6 +44,7 @@ public class ProductPurchaseActivity extends AppCompatActivity {
         tvProductLink = findViewById(R.id.textViewProductLink);
         tvProductLink.setMovementMethod(LinkMovementMethod.getInstance());
         DBR = FirebaseDatabase.getInstance().getReference().child("Member");
+        DBRS = FirebaseDatabase.getInstance().getReference().child("Member").child("1");
 
         Intent i = getIntent();
         final RewardsClass reward = (RewardsClass) i.getSerializableExtra("reward");
@@ -60,39 +63,41 @@ public class ProductPurchaseActivity extends AppCompatActivity {
         btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                DBRS.child("points").setValue(points.get(0) - 2600 + "");
+                Toast.makeText(ProductPurchaseActivity.this, "Trade successful, please check your email for more details to claim the reward", Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        points.clear();
+
+        DBR.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                DBR = FirebaseDatabase.getInstance().getReference().child("Member");
+
                 DBR.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int count = (int) dataSnapshot.getChildrenCount();
-                        for (z = 1; z < count + 1; z++) {
-                            DBR = FirebaseDatabase.getInstance().getReference().child("Member").child(String.valueOf(z));
-
-                            DBR.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    int points = reward.getPoints();
-                                    int pt = Integer.parseInt(dataSnapshot.child("points").getValue().toString());
-
-                                    int ptleft = pt - points;
-
-                                    DBR = FirebaseDatabase.getInstance().getReference("Member").child(String.valueOf(z)).child("points");
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+                        for (DataSnapshot pointsSnap : dataSnapshot.getChildren()) {
+                            points.add(Integer.parseInt(pointsSnap.child("points").getValue().toString()));
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
